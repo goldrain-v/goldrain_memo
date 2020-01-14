@@ -10,90 +10,142 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
   <style>
-    *{      /*전체 페이지에 사용하겠다!!*/
-      font-family: 'Do Hyeon', sans-serif;
-    } 
     .wrap{
-      max-width:900px;
+      width:900px;
       margin:auto;
-    }
-    .title{
-      font-size: 60px;
-    }
-    .btn-{
-      text-align: center;
-    }
 
-  </style>
+    }
+    .card-title{
+      color: blue;
+    }
+    .card-comment{
+      color:red;
+    }
+    *{      /*전체 페이지에 사용하겠다!!*/
+     font-family: 'Do Hyeon', sans-serif;
+   } 
+   .form-post{
+    max-width: 500px;
+    padding: 32px;
+    margin: 32px auto;
+    border-color: black;
+    border-radius: 5px;
+    border:solid;
+    display:block;
+  }
+  #post-box{
+    display: none
+  }
+</style>
+<script type="text/javascript">
 
-  <title>goldrain's mall</title>
+  function open_close(){
+    if ($('#button-postingbox').text()=='포스팅 박스 열기'){
+      $('#post-box').show();
+      $('#button-postingbox').text("포스팅 박스 닫기")
+    }
+    else{
+      $('#post-box').hide();
+      $('#button-postingbox').text("포스팅 박스 열기")
+    }
+  }
+ 
+  function post_add(){
+    var get_cnt = $('#postnum').val();
+    var cardbox = $('#cards-box')
+    var card = $('.card')[0];
+    for(var i=0;i<get_cnt;i++){
+      cardbox.append(card.outerHTML);
+    }
+  }
+</script>
+<title>goldrain's link memo</title>
 </head>
-
 <body>
   <div class = "wrap">
-    
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img class="d-block w-100" src="http://images.dailyhive.com/20170509183627/18252224_504769789913563_2052825150071504896_n.jpg" alt="First slide" height="500px">
-        </div>
-
-        <div class="carousel-item">
-          <img class="d-block w-100" src="https://imgix.bustle.com/uploads/image/2019/11/5/8f994b70-86d6-462e-a1ff-d33a1e0a3da8-woman_sneakers_shoes.jpg?w=1020&h=574&fit=crop&crop=faces&auto=format&q=70" alt="Second slide" height="500px">
-        </div>
-      </div>
+   <div class="jumbotron">
+    <h1 class="display-4">goldrain's link memo</h1>
+    <p class="lead">중요한 링크를 저장해두고, 나중에 볼 수 있는 공간입니다.</p>
+    <hr class="my-4">
+    <p>
+      <div class ="form-group">
+       <label for="exampleFormControlInput1">카드 갯수</label>
+       <input id = "postnum" class = "form-control" placeholder="">
+     </div>
+   </p>
+   <p>goldrain :)</p>
+   <p class="lead">
+    <a id = "button-postingbox"onclick="open_close()" class="btn btn-primary btn-lg" href="#" role="button">포스팅 박스 열기</a>
+    <a id = "btn-post-add" onclick="post_add()" class="btn btn-primary btn-lg" href="#" role="button">카드 추가하기</a>
+  </p>
+</div>
+<div id="post-box" class="form-post" >
+  <form>
+    <div  class="form-group">
+      <label for="exampleFormControlInput1">아티클 URL</label>
+      <input id = "posting-url" class="form-control" placeholder="">
     </div>
-    
-    <h4 class="badge badge-warning">goldrain's pick</h4>
-    <span class="badge badge-secondary">New</span><br>
-    <span class = "title">goldrain's 청자켓 </span>
-    
-    <span>가격 : 35,900원</span>
-    <h6>다가 오는 봄을 미리 준비해봐요 :)</h6>
-    <form>
-      <div class="input-group input-group-sm mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroup-sizing-sm">주문자 이름</span>
-        </div>
-        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-      </div>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <label class="input-group-text" for="inputGroupSelect01">수량</label>
-        </div>
-        <select class="custom-select" id="inputGroupSelect01">
-          <option selected>--수량을 선택해주세요. --</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-        </select>
-      </div>
-
-      <div class="input-group input-group-sm mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroup-sizing-sm">주소</span>
-        </div>
-        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-      </div>
-      <div class="input-group input-group-sm mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroup-sizing-sm">전화번호</span>
-        </div>
-        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-      </div>
-    </form>
-    <div class="btn-">
-      <button type="button" class="btn btn-primary">주문하기</button>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">간단 코멘트</label>
+      <textarea class="form-control" rows="2"></textarea>
     </div>
-
+    <button type="button" class="btn btn-primary">기사 저장</button>
+  </form>
+</div>
+<div id ="cards-box" class="card-columns">
+  <div class="card">
+    <img class="card-img-top" src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg" alt="Card image cap">
+    <div class="card-body">
+      <a href="#" class="card-title">여기에 기사 제목이 들어가요.</a>
+      <p class="card-text">내용을 작성해주세요.</p>
+      <p class="card-text card-comment">여기에 코멘트가 들어가요.</p>
+    </div>
   </div>
-
-
-
-
-
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <div class="card">
+    <img class="card-img-top" src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg" alt="Card image cap">
+    <div class="card-body">
+      <<a href="#" class="card-title">여기에 기사 제목이 들어가요.</a>
+      <p class="card-text">내용을 작성해주세요.</p>
+      <p class="card-text card-comment">여기에 코멘트가 들어가요.</p>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg" alt="Card image cap">
+    <div class="card-body">
+      <a href="#" class="card-title">여기에 기사 제목이 들어가요.</a>
+      <p class="card-text">내용을 작성해주세요.</p>
+      <p class="card-text card-comment">여기에 코멘트가 들어가요.</p>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg" alt="Card image cap">
+    <div class="card-body">
+      <a href="#" class="card-title">여기에 기사 제목이 들어가요.</a>
+      <p class="card-text">내용을 작성해주세요.</p>
+      <p class="card-text card-comment">여기에 코멘트가 들어가요.</p>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg" alt="Card image cap">
+    <div class="card-body">
+      <a href="#" class="card-title">여기에 기사 제목이 들어가요.</a>
+      <p class="card-text">내용을 작성해주세요.</p>
+      <p class="card-text card-comment">여기에 코멘트가 들어가요.</p>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg" alt="Card image cap">
+    <div class="card-body">
+      <a href="#" class="card-title">여기에 기사 제목이 들어가요.</a>
+      <p class="card-text">내용을 작성해주세요.</p>
+      <p class="card-text card-comment">여기에 코멘트가 들어가요.</p>
+    </div>
+  </div>
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
